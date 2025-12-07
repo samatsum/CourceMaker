@@ -1,6 +1,6 @@
 -----
 
-# 🏎️ AutoRacer Course Maker
+# 🏎️ ①AutoRacer Course Maker
 
 自動運転ミニカーバトル用のカスタムコース図を作成するためのWebアプリケーションです。
 
@@ -88,3 +88,94 @@ http://localhost:5173
 
 -----
 
+# 🐾 ②FootPrintOnCource
+マウスセンサーを利用したオドメトリ（移動量）計測・解析・軌跡プロットツールです。
+高ポーリングレート（1000Hz）でマウスの移動量（ミッキー）を取得し、CSVログへの保存とコース画像上への軌跡描画を自動で行います。
+
+## 動作環境
+
+- **Python 3.12** 以上
+- **OS:** Windows / macOS / Linux
+- **推奨マウス:** 高DPI・高ポーリングレート対応のゲーミングマウス (例: Logicool G304)
+
+## セットアップ手順 (Installation)
+
+このリポジトリをクローンまたはダウンロードした後、以下の手順で環境を構築してください。
+
+### 1. 依存ライブラリのインストール
+
+ターミナル（またはコマンドプロンプト/PowerShell）を開き、プロジェクトのディレクトリで以下のコマンドを実行します。
+
+#### 🪟 Windows の場合
+```powershell
+py -3.12 -m pip install -r requirements.txt
+````
+
+*(※ Pythonランチャーを使用していない場合は `pip install -r requirements.txt` )*
+
+#### 🍎 macOS / 🐧 Linux の場合
+
+```bash
+pip3 install -r requirements.txt
+```
+
+### 2\. コース画像の配置
+
+計測したいコースの画像ファイルを、スクリプトと同じディレクトリに配置してください。
+ファイル名は `CourceImage` で始まり、拡張子が `.jpg` または `.jpeg` である必要があります。
+
+  * 例: `CourceImage.jpg`, `CourceImage_2025.jpeg`
+  * **注意:** 画像がない場合、プロットは白背景に行われます。
+
+-----
+
+## 使い方 (Usage)
+
+以下のコマンドでツールを起動します。引数として「マウスの名前（または実験名）」を指定してください。
+
+#### 🪟 Windows の場合
+
+```powershell
+py -3.12 mickey_logger_auto_image.py <マウス名>
+```
+
+*例:* `py -3.12 mickey_logger_auto_image.py G304_Test01`
+
+#### 🍎 macOS / 🐧 Linux の場合
+
+```bash
+python3 mickey_logger_auto_image.py <マウス名>
+```
+
+### 操作方法
+
+1.  コマンドを実行すると、黒いウィンドウが立ち上がり計測が開始されます。
+2.  マウスを動かすと、リアルタイムでデータが取得されます。
+3.  **[ESC] キー** を押すと計測を終了します。
+4.  終了後、自動的に解析が行われ、軌跡画像が保存されます。
+
+-----
+
+## 出力ファイル (Output)
+
+実行後、`Log/<マウス名>/<マウス名>_<日時>/` ディレクトリが自動生成され、以下のファイルが保存されます。
+
+  * `raw_data.log`: 取得した生のミッキーデータ (CSV)
+  * `analyze.log`: 計算済みの距離・角度データ (CSV)
+  * `trajectory_plot.png`: コース画像上に軌跡を重ねたプロット画像
+
+## 設定の変更 (Configuration)
+
+`mickey_logger_auto_image.py` 内の `CourseConstants` クラスを編集することで、以下の設定を変更できます。
+
+  * **DPI\_SETTING:** マウスのDPI設定 (デフォルト: 800)
+  * **REAL\_W\_CM / REAL\_H\_CM:** コースの実寸サイズ (cm)
+  * **IMG\_W\_PX / IMG\_H\_PX:** 背景画像のピクセルサイズ
+  * **START\_PX\_X / START\_PX\_Y:** スタート地点のピクセル座標
+
+## ライセンス
+
+This project is open source.
+
+```
+```
