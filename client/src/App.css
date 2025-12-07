@@ -1,0 +1,169 @@
+/* src/App.css */
+#root {
+  width: 100vw;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: sans-serif;
+  overflow: hidden; /* 画面自体のスクロールを禁止 */
+}
+
+h1 {
+  margin: 0 0 10px 0;
+  font-size: 1.5rem;
+}
+
+.controls {
+  margin-bottom: 10px;
+  padding: 10px;
+  background: #f0f0f0;
+  border-radius: 8px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1000px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+button {
+  padding: 6px 12px;
+  cursor: pointer;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: white;
+  transition: all 0.2s;
+}
+
+button:hover:not(:disabled) {
+  background-color: #e0e0e0;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 押されているボタン（トグルなど） */
+button.active {
+  background-color: #666;
+  color: white;
+  border-color: #333;
+}
+
+.canvas-wrapper {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* はみ出し防止 */
+  border: 2px solid #333;
+  background-color: #888; /* キャンバス外の背景色 */
+  border-radius: 4px;
+}
+
+/* 選択されたパーツ */
+.selected {
+  stroke: red;
+  stroke-width: 2px;
+  filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.5));
+}
+
+/* ロックされたパーツ（選択時） */
+.selected.locked {
+  stroke: #555;
+  stroke-dasharray: 4; /* 点線でロックを表現 */
+}
+
+/* src/App.css
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.controls {
+  margin-bottom: 20px;
+  padding: 10px;
+  background: #f0f0f0;
+  border-radius: 8px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+button {
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.canvas-container {
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+  border: 2px solid #333;
+  background-color: #fff;
+  /* 実際のコースサイズに合わせる */
+  width: 560px; 
+  height: 80vh;
+}
+
+/* 選択されたパーツを少し光らせる */
+.selected {
+  stroke: red;
+  stroke-width: 2px;
+  filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.5));
+} */
+
+/* #root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+} */
