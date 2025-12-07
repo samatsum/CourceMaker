@@ -173,9 +173,6 @@ python3 FootPrint.py <マウス名>
   * **IMG\_W\_PX / IMG\_H\_PX:** 背景画像のピクセルサイズ
   * **START\_PX\_X / START\_PX\_Y:** スタート地点のピクセル座標
 
-## ライセンス
-
-This project is open source.
 
 ```
 ```
