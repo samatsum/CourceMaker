@@ -84,7 +84,7 @@ http://localhost:5173
 
   * **ボタン:** `📷 コース図保存 (.jpg)` (赤色ボタン)
   * **機能:** 左側の「パーツ置き場」を除外した、\*\*コース図エリア（1000cm x 546cm）\*\*のみをJPEG画像として保存します。
-  * **ファイル名:** `course-layout_YYYYMMDD_HHMMSS.jpg` の形式で日時が自動付与されます。
+  * **ファイル名:** `CourceImage_YYYYMMDD_HHMMSS.jpg` の形式で日時が自動付与されます。
 
 -----
 
@@ -124,7 +124,7 @@ pip3 install -r requirements.txt
 計測したいコースの画像ファイルを、スクリプトと同じディレクトリに配置してください。
 ファイル名は `CourceImage` で始まり、拡張子が `.jpg` または `.jpeg` である必要があります。
 
-  * 例: `CourceImage.jpg`, `CourceImage_2025.jpeg`
+  * 例: `CourceImage.jpg`, `CourceImage_20251207_1432.jpeg`
   * **注意:** 画像がない場合、プロットは白背景に行われます。
 
 -----
@@ -139,12 +139,12 @@ pip3 install -r requirements.txt
 py -3.12 mickey_logger_auto_image.py <マウス名>
 ```
 
-*例:* `py -3.12 mickey_logger_auto_image.py G304_Test01`
+*例:* `py -3.12 FootPrint.py G304_Test01`
 
 #### 🍎 macOS / 🐧 Linux の場合
 
 ```bash
-python3 mickey_logger_auto_image.py <マウス名>
+python3 FootPrint.py <マウス名>
 ```
 
 ### 操作方法
