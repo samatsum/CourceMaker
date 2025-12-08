@@ -49,11 +49,11 @@ def _setup_context(args: list) -> Dict[str, Any]:
     LOG_ROOT_DIR = os.path.join(BASE_DIR, "Log")
     
     # --- 画像ファイルの自動検索ロジック ---
-    # ルール: "CourceImage" で始まり、".jpg" または ".jpeg" で終わるファイル
+    # ルール: "CourseImage" で始まり、".jpg" または ".jpeg" で終わるファイル
     image_candidates = []
     try:
         for f in os.listdir(BASE_DIR):
-            if f.startswith("CourceImage") and (f.lower().endswith(".jpg") or f.lower().endswith(".jpeg")):
+            if f.startswith("CourseImage") and (f.lower().endswith(".jpg") or f.lower().endswith(".jpeg")):
                 image_candidates.append(os.path.join(BASE_DIR, f))
     except FileNotFoundError:
         pass
@@ -64,7 +64,7 @@ def _setup_context(args: list) -> Dict[str, Any]:
         image_path = image_candidates[0]
     else:
         # 見つからない場合はデフォルト名（後のチェックでエラーになる）
-        image_path = os.path.join(BASE_DIR, "CourceImage.jpg")
+        image_path = os.path.join(BASE_DIR, "CourseImage.jpg")
 
     
     MOUSE_DIR = os.path.join(LOG_ROOT_DIR, mouse_name)
@@ -95,7 +95,7 @@ def _initialize_pygame(context: Dict[str, Any]) -> pygame.Surface:
     if os.path.exists(context['image_path']): 
         print(f"🖼️ 背景画像: {img_name} を使用します")
     else: 
-        print(f"⚠️ 背景画像: 見つかりません！ (検索条件: CourceImage*.jpg)")
+        print(f"⚠️ 背景画像: 見つかりません！ (検索条件: CourseImage*.jpg)")
     
     print("終了するにはウィンドウをアクティブにして [ESC] キー を押してください。")
     print("=" * 70)
@@ -315,7 +315,7 @@ if __name__ == "__main__":
 #     timestamp = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
 #     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 #     LOG_ROOT_DIR = os.path.join(BASE_DIR, "Log")
-#     image_path = os.path.join(BASE_DIR, "CourceImage.jpg")
+#     image_path = os.path.join(BASE_DIR, "CourseImage.jpg")
 #     MOUSE_DIR = os.path.join(LOG_ROOT_DIR, mouse_name)
 #     OUTPUT_DIR = os.path.join(MOUSE_DIR, f"{mouse_name}_{timestamp}")
 #     os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -337,7 +337,7 @@ if __name__ == "__main__":
 #     pygame.mouse.set_visible(False)
 #     print("=" * 70); print(f"✅ 計測開始 (DPI: {CourseConstants.DPI_SETTING})"); print(f"📂 保存先: {context['output_dir']}"); 
 #     if os.path.exists(context['image_path']): print("🖼️ 背景画像: 見つかりました")
-#     else: print("⚠️ 背景画像: 見つかりません！ 'CourceImage.jpg'を配置してください。")
+#     else: print("⚠️ 背景画像: 見つかりません！ 'CourseImage.jpg'を配置してください。")
 #     print("終了するにはウィンドウをアクティブにして [ESC] キー を押してください。")
 #     print("=" * 70)
 #     return screen

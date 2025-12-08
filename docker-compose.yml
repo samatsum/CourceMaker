@@ -1,7 +1,7 @@
 services:
   app:
     image: node:20-alpine
-    working_dir: /app/client
+    working_dir: /app/CourseImageMaker
     ports:
       - "5173:5173"
     volumes:

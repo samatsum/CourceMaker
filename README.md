@@ -28,7 +28,7 @@ PCに **Git** および **Docker Desktop** がインストールされ、起動�
 以下のコマンドでプロジェクトをダウンロードします。
 
 ```bash
-git clone https://github.com/samatsum/CourceMaker.git
+git clone https://github.com/samatsum/CourseMaker.git
 ```
 
 ### 3\. 環境の構築と起動
@@ -83,11 +83,16 @@ http://localhost:5173
 
   * **ボタン:** `📷 コース図保存 (.jpg)` (赤色ボタン)
   * **機能:** 左側の「パーツ置き場」を除外した、\*\*コース図エリア（1000cm x 546cm）\*\*のみをJPEG画像として保存します。
-  * **ファイル名:** `CourceImage_YYYYMMDD_HHMMSS.jpg` の形式で日時が自動付与されます。
+  * **ファイル名:** `CourseImage_YYYYMMDD_HHMMSS.jpg` の形式で日時が自動付与されます。
 
 -----
 
-# 🐾 ②FootPrintOnCource
+# 🐾 ②FootPrintOnCourse
+
+```
+cd FootPrintOnCourceImage
+```
+
 マウスセンサーを利用したオドメトリ（移動量）計測・解析・軌跡プロットツールです。
 高ポーリングレート（1000Hz）でマウスの移動量（ミッキー）を取得し、CSVログへの保存とコース画像上への軌跡描画を自動で行います。
 
@@ -121,9 +126,9 @@ pip3 install -r requirements.txt
 ### 2\. コース画像の配置
 
 計測したいコースの画像ファイルを、スクリプトと同じディレクトリに配置してください。
-ファイル名は `CourceImage` で始まり、拡張子が `.jpg` または `.jpeg` である必要があります。
+ファイル名は `CourseImage` で始まり、拡張子が `.jpg` または `.jpeg` である必要があります。
 
-  * 例: `CourceImage.jpg`, `CourceImage_20251207_1432.jpeg`
+  * 例: `CourseImage.jpg`, `CourseImage_20251207_1432.jpeg`
   * **注意:** 画像がない場合、プロットは白背景に行われます。
 
 -----

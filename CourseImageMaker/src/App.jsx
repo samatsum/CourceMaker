@@ -162,7 +162,7 @@ function App() {
             const min = String(now.getMinutes()).padStart(2, '0');
             const ss = String(now.getSeconds()).padStart(2, '0');
             
-            const filename = `CourceImage_${yyyy}${mm}${dd}_${hh}${mm}${ss}.jpg`;
+            const filename = `CourseImage_${yyyy}${mm}${dd}_${hh}${mm}${ss}.jpg`;
 
             const a = document.createElement('a');
             a.download = filename;

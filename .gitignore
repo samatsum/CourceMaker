@@ -1,6 +1,6 @@
 # Node.js dependencies (絶対に上げない)
 node_modules/
-client/node_modules/
+CourseImageMaker/node_modules/
 
 # Build outputs (ビルド成果物は上げない)
 dist/
