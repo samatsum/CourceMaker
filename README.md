@@ -21,7 +21,7 @@
 
 ### 1\. 事前準備
 
-PCに **Git** および **Docker Desktop** がインストールされ、起動していることを確認してください。
+PCに **Git** および **Docker Desktop** がインストールされ、起動していることを確認してください。また、python3.12も必要です。
 
 ### 2\. リポジトリのクローン
 
@@ -93,7 +93,7 @@ http://localhost:5173
 
 ## 動作環境
 
-- **Python 3.12** 以上
+- **Python 3.12** 使用
 - **OS:** Windows / macOS / Linux
 - **推奨マウス:** 高DPI・高ポーリングレート対応のゲーミングマウス (例: Logicool G304)
 
@@ -154,7 +154,7 @@ pip3 install -r requirements.txt
 
 ## 設定の変更 (Configuration)
 
-`mickey_logger_auto_image.py` 内の `CourseConstants` クラスを編集することで、以下の設定を変更できます。
+`FootPrint.py` 内の `CourseConstants` クラスを編集することで、以下の設定を変更できます。
 
   * **DPI\_SETTING:** マウスのDPI設定 (デフォルト: 800)
   * **REAL\_W\_CM / REAL\_H\_CM:** コースの実寸サイズ (cm)
