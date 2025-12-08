@@ -29,7 +29,6 @@ PCに **Git** および **Docker Desktop** がインストールされ、起動�
 
 ```bash
 git clone https://github.com/samatsum/CourceMaker.git
-cd CourceMaker
 ```
 
 ### 3\. 環境の構築と起動
@@ -133,19 +132,8 @@ pip3 install -r requirements.txt
 
 以下のコマンドでツールを起動します。引数として「マウスの名前（または実験名）」を指定してください。
 
-#### 🪟 Windows の場合
+`py -3.12 FootPrint.py G304_Test01`
 
-```powershell
-py -3.12 mickey_logger_auto_image.py <マウス名>
-```
-
-*例:* `py -3.12 FootPrint.py G304_Test01`
-
-#### 🍎 macOS / 🐧 Linux の場合
-
-```bash
-python3 FootPrint.py <マウス名>
-```
 
 ### 操作方法
 
