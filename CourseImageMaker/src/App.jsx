@@ -124,11 +124,44 @@ function App() {
     };
   }, [parts, isDeleteMode]);
 
-  // === 画像保存機能 ===
-  const downloadJpeg = () => {
+  // === 共通日時生成関数 ===
+  const generateTimestamp = () => {
+    const now = new Date();
+    const yyyy = now.getFullYear();
+    const mm = String(now.getMonth() + 1).padStart(2, '0');
+    const dd = String(now.getDate()).padStart(2, '0');
+    const hh = String(now.getHours()).padStart(2, '0');
+    const min = String(now.getMinutes()).padStart(2, '0');
+    const ss = String(now.getSeconds()).padStart(2, '0');
+    return `${yyyy}${mm}${dd}_${hh}${min}${ss}`;
+  }
+
+  // === CSV & JPEG パッケージ保存機能 ===
+  const downloadCoursePackage = () => {
     setSelectedId(null);
     setIsDeleteMode(false);
+    
+    const timestamp = generateTimestamp();
+    const jpegFilename = `CourseImage_${timestamp}.jpg`;
+    const csvFilename = `CourseData_${timestamp}.csv`;
 
+    // 1. CSVデータの作成
+    // ヘッダー行: Nameを先頭にするのがUE5のルールです
+    const headers = ["Name", "type", "x", "y", "rotation"];
+    
+    // データ行の作成
+    const rows = parts.map((p, index) => {
+        const name = `Part_${String(index + 1).padStart(3, '0')}`;
+        return [name, p.type, p.x, p.y, p.rotation].join(",");
+    });
+
+    // 文字列として結合 (改行コード \n)
+    const csvContent = [headers.join(","), ...rows].join("\n");
+    
+    // Blob作成
+    const csvBlob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    
+    // 2. JPEGデータの準備
     setTimeout(() => {
         const svgElement = document.getElementById('course-svg');
         if (!svgElement) return;
@@ -154,20 +187,23 @@ function App() {
         img.onload = () => {
             ctx.drawImage(img, 0, 0, COURSE_WIDTH, COURSE_HEIGHT);
             
-            const now = new Date();
-            const yyyy = now.getFullYear();
-            const mm = String(now.getMonth() + 1).padStart(2, '0');
-            const dd = String(now.getDate()).padStart(2, '0');
-            const hh = String(now.getHours()).padStart(2, '0');
-            const min = String(now.getMinutes()).padStart(2, '0');
-            const ss = String(now.getSeconds()).padStart(2, '0');
-            
-            const filename = `CourseImage_${yyyy}${mm}${dd}_${hh}${mm}${ss}.jpg`;
+            const jpegUrl = canvas.toDataURL('image/jpeg', 0.9);
 
-            const a = document.createElement('a');
-            a.download = filename;
-            a.href = canvas.toDataURL('image/jpeg', 0.9);
-            a.click();
+            const downloadFile = (dataUrl, filename) => {
+                const a = document.createElement('a');
+                a.download = filename;
+                a.href = dataUrl;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            }
+            
+            // --- ダウンロード実行 ---
+            downloadFile(jpegUrl, jpegFilename); // 画像
+
+            const csvUrl = URL.createObjectURL(csvBlob);
+            downloadFile(csvUrl, csvFilename);   // CSV
+            URL.revokeObjectURL(csvUrl); 
             
             URL.revokeObjectURL(url);
         };
@@ -175,7 +211,7 @@ function App() {
     }, 100);
   };
 
-  // === パーツ操作ロジック ===
+  // === パーツ操作ロジック (変更なし) ===
   
   const addPart = (typeKey) => {
     if (isDeleteMode) setIsDeleteMode(false); 
@@ -283,7 +319,7 @@ function App() {
       setCollidingId(null);
   };
 
-  // === ドラッグ操作ロジック ===
+  // === ドラッグ操作ロジック (変更なし) ===
 
   const [isDragging, setIsDragging] = useState(false);
   const [dragStartPos, setDragStartPos] = useState({ x: 0, y: 0 });
@@ -363,15 +399,15 @@ function App() {
 
   return (
     <div className="app" onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}>
-      <h1>コースレイアウト作成 (v1.2)</h1>
+      <h1>コースレイアウト作成 (v1.7)</h1>
 
       <div style={{marginBottom: '10px', textAlign: 'center'}}>
         <button 
-            onClick={downloadJpeg}
+            onClick={downloadCoursePackage}
             style={{backgroundColor: '#FF4444', color: 'white', fontWeight: 'bold', fontSize: '0.9rem', padding: '6px 20px'}}
-            title="コース部分だけを画像として保存します"
+            title="コース図と配置データ(CSV)をまとめてダウンロードします"
         >
-            📷 コース図保存 (.jpg)
+            💾 コースパッケージ保存 (.jpg + .csv)
         </button>
       </div>
       
